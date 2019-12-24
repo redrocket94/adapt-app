@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">adapt-app</string>
+    <string name="error_loading_text">Error occured while loading data!</string>
+</resources>
