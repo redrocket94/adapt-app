@@ -1,5 +1,3 @@
-package com.example.adapt_app.util
-
 import android.content.Context
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable

@@ -13,7 +13,7 @@ class StoriesService {
         DaggerApiComponent.create().inject(this)
     }
 
-    fun getStories(): Single<List<Story>> {
+    fun getStories(): Single<Example> {
         return api.getStories()
     }
 }

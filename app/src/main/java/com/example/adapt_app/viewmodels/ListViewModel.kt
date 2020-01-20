@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.adapt_app.dependencyinjection.DaggerApiComponent
 import com.example.adapt_app.models.StoriesService
-import com.example.adapt_app.models.Story
+import com.example.adapt_app.models.Article
+import com.example.adapt_app.models.Example
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
+import kotlin.reflect.typeOf
 
 class ListViewModel: ViewModel() {
 
@@ -21,7 +23,7 @@ class ListViewModel: ViewModel() {
     }
     private val disposable = CompositeDisposable()
 
-    val stories = MutableLiveData<List<Story>>()
+    val stories = MutableLiveData<List<Article>>()
     val storyLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
@@ -35,9 +37,9 @@ class ListViewModel: ViewModel() {
             storiesService.getStories()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<List<Story>>() {
-                    override fun onSuccess(value: List<Story>?) {
-                        stories.value = value
+                .subscribeWith(object: DisposableSingleObserver<Example>() {
+                    override fun onSuccess(value: Example?) {
+                        stories.value = value?.articles
                         storyLoadError.value = false
                         loading.value = false
                     }
