@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface StoriesApi {
 
-    @GET("v2/top-headlines?country=us&apiKey=5f49a386a37041a6b95d8902ce550103")
-    fun getStories(): Single<Example>
+    @GET("v2/top-headlines?country=us&apiKey=###") // Insert your own API key here
+    fun getStories(): Single<Response>
 }

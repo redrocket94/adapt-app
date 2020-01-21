@@ -5,13 +5,12 @@ import androidx.lifecycle.ViewModel
 import com.example.adapt_app.dependencyinjection.DaggerApiComponent
 import com.example.adapt_app.models.StoriesService
 import com.example.adapt_app.models.Article
-import com.example.adapt_app.models.Example
+import com.example.adapt_app.models.Response
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import kotlin.reflect.typeOf
 
 class ListViewModel: ViewModel() {
 
@@ -37,8 +36,8 @@ class ListViewModel: ViewModel() {
             storiesService.getStories()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<Example>() {
-                    override fun onSuccess(value: Example?) {
+                .subscribeWith(object: DisposableSingleObserver<Response>() {
+                    override fun onSuccess(value: Response?) {
                         stories.value = value?.articles
                         storyLoadError.value = false
                         loading.value = false

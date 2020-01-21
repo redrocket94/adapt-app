@@ -32,7 +32,7 @@ class Article {
 
 }
 
-class Example {
+class Response {
 
     @SerializedName("status")
     @Expose
